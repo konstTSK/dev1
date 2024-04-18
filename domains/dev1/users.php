@@ -1,3 +1,7 @@
+<?php session_start(); ?>
+<?php if(empty($_SESSION['auth'])): ?>
+<?php header("location: /page_login.php "); ?>
+<?php endif; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +26,14 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                    <!--
+
                     <li class="nav-item">
                         <a class="nav-link" href="page_login.html">Войти</a>
                     </li>
+                    -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Выйти</a>
+                        <a class="nav-link" href="/logout.php">Выйти</a>
                     </li>
                 </ul>
             </div>
