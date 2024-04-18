@@ -1,7 +1,16 @@
 <?php session_start(); ?>
 <?php if(empty($_SESSION['auth'])): ?>
 <?php header("location: /page_login.php "); ?>
+
+
 <?php endif; ?>
+
+<?php
+if ( $_SESSION['admin'] = true) {
+    echo 'you admin ';
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
