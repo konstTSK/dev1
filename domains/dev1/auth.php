@@ -17,7 +17,13 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (password_verify($_POST['password'], $user['password'])) {
     $_SESSION['auth'] = true;
-    $_SESSION['admin']= $user['admin'];
+
+    if ($user['admin']== true){
+        $_SESSION['admin']= true;
+    }else{
+        $_SESSION['admin']= false;
+    }
+
     header("Location: /users.php");
 }else {
     $_SESSION['message']='Не верный логин или пароль';
