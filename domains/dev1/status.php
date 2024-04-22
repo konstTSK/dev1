@@ -13,6 +13,23 @@
     <link rel="stylesheet" media="screen, print" href="css/fa-brands.css">
 </head>
 <body>
+
+<?php
+
+$statuses = [
+        'online'=>'Онлайн',
+        'away'=>'Отошел',
+        'offline'=>'Не беспокоить'
+
+];
+
+
+$my_status = 'offline'; // текущий статус
+
+
+?>
+
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-primary-gradient">
         <a class="navbar-brand d-flex align-items-center fw-500" href="users.html"><img alt="logo" class="d-inline-block align-top mr-2" src="img/logo.png"> Учебный проект</a> <button aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor02" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarColor02">
@@ -53,9 +70,13 @@
                                         <div class="form-group">
                                             <label class="form-label" for="example-select">Выберите статус</label>
                                             <select class="form-control" id="example-select">
-                                                <option>Онлайн</option>
-                                                <option>Отошел</option>
-                                                <option>Не беспокоить</option>
+                                                <?php foreach ($statuses as $key => $status): ?>
+                                                    <?php if ( $my_status == $key):  ?>
+                                                        <option value="<?php echo $key ?>" selected><?php echo $status ?></option>
+                                                    <?php else: ?>
+                                                        <option value="<?php echo $key ?>" ><?php echo $status ?></option>
+                                                    <?php endif; ?>
+                                                <? endforeach; ?>
                                             </select>
                                         </div>
                                     </div>

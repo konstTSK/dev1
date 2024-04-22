@@ -107,7 +107,7 @@
                                 <a class="dropdown-item" href="security.html">
                                     <i class="fa fa-lock"></i>
                                     Безопасность</a>
-                                <a class="dropdown-item" href="status.html">
+                                <a class="dropdown-item" href="status.php">
                                     <i class="fa fa-sun"></i>
                                     Установить статус</a>
                                 <a class="dropdown-item" href="media.html">
