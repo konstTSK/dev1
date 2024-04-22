@@ -17,6 +17,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (password_verify($_POST['password'], $user['password'])) {
     $_SESSION['auth'] = true;
+    $_SESSION['user_id'] = $user['id'];
 
     if ($user['admin']== true){
         $_SESSION['admin']= true;
