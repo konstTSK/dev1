@@ -42,7 +42,7 @@ if ( ($_SESSION['admin'] != true ) || $_SESSION['user_id'] != $id ) {
                     <a class="nav-link" href="page_login.html">Войти</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Выйти</a>
+                    <a class="nav-link" href="/logout.php">Выйти</a>
                 </li>
             </ul>
         </div>
@@ -62,7 +62,6 @@ if ( ($_SESSION['admin'] != true ) || $_SESSION['user_id'] != $id ) {
             $stmt = $pdo->prepare($sql);
             $stmt->execute(['id'=>$id]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
         ?>
         <form action="/edit_handler.php?id=<?php echo $user['id']?>" method="POST">
             <div class="row">
