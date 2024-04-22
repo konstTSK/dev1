@@ -1,3 +1,19 @@
+<?php session_start(); ?>
+<?php if(empty($_SESSION['auth'])): ?>
+    <?php header("location: /page_login.php "); ?>
+<?php endif; ?>
+
+
+<?php
+$id = $_GET['id'];
+if ( ($_SESSION['admin'] != true ) || $_SESSION['user_id'] != $id ) {
+    $_SESSION['message']='Вы можете редактировать тольк свой профиль';
+    header("location: /page_login.php ");
+    exit;
+} ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +54,17 @@
             </h1>
 
         </div>
-        <form action="">
+
+        <?php
+
+            $pdo = new PDO("mysql:host=localhost;dbname=diplom","root","root");
+            $sql = 'SELECT * FROM user WHERE id = :id';
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['id'=>$id]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        ?>
+        <form action="/edit_handler.php?id=<?php echo $user['id']?>" method="POST">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -50,25 +76,25 @@
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="Иван иванов">
+                                    <input type="text" name="name" id="simpleinput" class="form-control" value="<?php echo $user['name']?>">
                                 </div>
 
                                 <!-- title -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Место работы</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="Marlin Веб-разработчик">
+                                    <input type="text" name="work" id="simpleinput" class="form-control" value="<?php echo $user['work']?>">
                                 </div>
 
                                 <!-- tel -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Номер телефона</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="8 888 8888 88">
+                                    <input type="text" name="phone" id="simpleinput" class="form-control" value="<?php echo $user['phone']?>">
                                 </div>
 
                                 <!-- address -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Адрес</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="Восточные Королевства, Штормград">
+                                    <input type="text" name="addres" id="simpleinput" class="form-control" value="<?php echo $user['addres']?>">
                                 </div>
                                 <div class="col-md-12 mt-3 d-flex flex-row-reverse">
                                     <button class="btn btn-warning">Редактировать</button>
