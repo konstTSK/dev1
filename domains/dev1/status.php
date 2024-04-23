@@ -2,10 +2,13 @@
 session_start();
 
 $id = $_GET['id'];
-if (($_SESSION['admin'] != true) || $_SESSION['user_id'] != $id) {
+
+if ( $_SESSION['admin'] == true or $_SESSION['user_id'] == $id) {
+
+}else{
     $_SESSION['message'] = 'Вы можете редактировать тольк свой профиль';
-    header("location: /page_login.php ");
-    exit;
+    header("location: /users.php ");
+
 }
 if(empty($_SESSION['auth'])) {
     header("location: /page_login.php ");
@@ -70,7 +73,7 @@ $statuses = [
         $my_status = $stmt->fetch(PDO::FETCH_ASSOC);
 
         ?>
-        <form action="status_edit.php" method="POST">
+        <form action="status_edit.php?id=<?php echo $id?>" method="POST">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">

@@ -3,7 +3,7 @@ session_start();
 
 
 $id = $_GET['id'];
-if (($_SESSION['admin'] != true) || $_SESSION['user_id'] != $id) {
+if (($_SESSION['admin'] == false) ) {
     $_SESSION['message'] = 'Вы можете редактировать тольк свой профиль';
     header("location: /page_login.php ");
     exit;

@@ -1,16 +1,17 @@
-<?php session_start(); ?>
-<?php if(empty($_SESSION['auth'])): ?>
-    <?php header("location: /page_login.php "); ?>
-<?php endif; ?>
+<?php session_start();
+if(empty($_SESSION['auth'])) {
+    header("location: /page_login.php");
+}
 
-
-<?php
 $id = $_GET['id'];
-if ( ($_SESSION['admin'] != true ) || $_SESSION['user_id'] != $id ) {
-    $_SESSION['message']='Вы можете редактировать тольк свой профиль';
-    header("location: /page_login.php ");
-    exit;
-} ?>
+
+if ( ($_SESSION['admin'] == true) or ($_SESSION['user_id'] == $id)  )  {
+
+} else  {
+     $_SESSION['message']='Вы можете редактировать тольк свой профиль';
+     header("location: /users.php");
+}
+?>
 
 
 

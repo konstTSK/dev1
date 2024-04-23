@@ -1,7 +1,9 @@
 <?php
 session_start();
 
-$user_id = $_SESSION['user_id'];
+// сделать проверку на ID
+
+$user_id = $_GET['id'];
 $status = $_POST['status'];
 
 
