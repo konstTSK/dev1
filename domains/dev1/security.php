@@ -51,7 +51,7 @@ $user_id = $_GET['id'];
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         ?>
 
-        <form action="security_handler.php?id=<?php echo $user['email']?>" method="POST">
+        <form action="security_handler.php?id=<?php echo $user['id']?>" method="POST">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
