@@ -81,8 +81,7 @@
                 $sql = 'SELECT * FROM user';
                 $stmt = $pdo->prepare($sql);
                 $stmt->execute();
-
-               $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
 <?php  foreach ($users as $key => $user):  ?>
 

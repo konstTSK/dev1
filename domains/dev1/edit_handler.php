@@ -29,4 +29,5 @@ $stmt->execute([
 
 $_SESSION['message']='Данные обновлены';
 header("location: /users.php");
+
 ?>

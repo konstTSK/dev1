@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,14 +20,13 @@
 <?php
 
 $statuses = [
-        'online'=>'Онлайн',
-        'away'=>'Отошел',
-        'offline'=>'Не беспокоить'
-
+        'success'=>'Онлайн',
+        'warning'=>'Отошел',
+        'danger'=>'Не беспокоить',
 ];
 
 
-$my_status = 'offline'; // текущий статус
+//$my_status = 'offline'; // текущий статус
 
 
 ?>
@@ -67,11 +69,20 @@ $my_status = 'offline'; // текущий статус
                                 <div class="row">
                                     <div class="col-md-4">
                                         <!-- status -->
+                                        <?php
+                                            $user_id = $_SESSION['user_id'];
+                                            $pdo = new PDO("mysql:host=localhost;dbname=diplom","root","root");
+                                            $sql = 'SELECT status FROM user WHERE id = :id';
+                                            $stmt = $pdo->prepare($sql);
+                                            $stmt->execute(['id'=>$user_id]);
+                                            $my_status = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                                        ?>
                                         <div class="form-group">
                                             <label class="form-label" for="example-select">Выберите статус</label>
                                             <select class="form-control" id="example-select">
                                                 <?php foreach ($statuses as $key => $status): ?>
-                                                    <?php if ( $my_status == $key):  ?>
+                                                    <?php if ( $my_status['status'] == $key):  ?>
                                                         <option value="<?php echo $key ?>" selected><?php echo $status ?></option>
                                                     <?php else: ?>
                                                         <option value="<?php echo $key ?>" ><?php echo $status ?></option>
