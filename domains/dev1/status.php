@@ -65,11 +65,11 @@ $statuses = [
 
         </div>
         <?php
-        $user_id = $_SESSION['user_id'];
+
         $pdo = new PDO("mysql:host=localhost;dbname=diplom","root","root");
         $sql = 'SELECT status FROM user WHERE id = :id';
         $stmt = $pdo->prepare($sql);
-        $stmt->execute(['id'=>$user_id]);
+        $stmt->execute(['id'=>$id]);
         $my_status = $stmt->fetch(PDO::FETCH_ASSOC);
 
         ?>
