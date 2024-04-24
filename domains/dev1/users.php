@@ -55,8 +55,9 @@
             </div>
             <div class="row">
                 <div class="col-xl-12">
+
                     <?php
-                    if ( $_SESSION['admin'] == true) {
+                    if ( $_SESSION['admin'] == 'admin') {
                         echo '<a class="btn btn-success" href="/create_user.php">Добавить</a>';
                     }
                     ?>
@@ -90,7 +91,7 @@
                                     <span class="rounded-circle profile-image d-block " style="background-image:url('img/demo/avatars/<?php echo $user['avatar']; ?>'); background-size: cover;"></span>
                                 </span>
                     <div class="info-card-text flex-1">
-                        <?php if ( ($_SESSION['admin'] == true) || $_SESSION['user_id'] == $user['id'] ): ?>
+                        <?php if ( ($_SESSION['admin'] == "admin") || $_SESSION['user_id'] == $user['id'] ): ?>
                             <a href="javascript:void(0);" class="fs-xl text-truncate text-truncate-lg text-info" data-toggle="dropdown" aria-expanded="false">
                                 <?php echo $user['name']; ?>
                                 <i class="fal fas fa-cog fa-fw d-inline-block ml-1 fs-md"></i>

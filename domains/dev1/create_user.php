@@ -1,10 +1,12 @@
-<?php session_start(); ?>
-<?php if( empty($_SESSION['auth']) and  $_SESSION['admin']!=1 ): ?>
-    <?php
-    $_SESSION['message'] = 'у вас не достаточно прав или вы не авторизованы';
-    ?>
-    <?php header("location: /page_login.php "); ?>
-<?php endif; ?>
+<?php
+session_start();
+ if ( empty($_SESSION['auth'])  and ( $_SESSION['admin']!== 'admin')) {
+     $_SESSION['message'] = 'у вас не достаточно прав или вы не авторизованы';
+     header("location: /page_login.php ");
+     exit;
+ }
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,9 +32,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="page_login.php">Войти</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="/logout.php">Выйти</a>
                 </li>
