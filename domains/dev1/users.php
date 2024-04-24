@@ -60,8 +60,6 @@
                         echo '<a class="btn btn-success" href="/create_user.php">Добавить</a>';
                     }
                     ?>
-
-
                     <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
                         <input type="text" id="js-filter-contacts" name="filter-contacts" class="form-control shadow-inset-2 form-control-lg" placeholder="Найти пользователя">
                         <div class="btn-group btn-group-lg btn-group-toggle hidden-lg-down ml-3" data-toggle="buttons">
@@ -84,7 +82,6 @@
                 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
 <?php  foreach ($users as $key => $user):  ?>
-
     <div class="col-xl-4">
         <div id="c_<?php echo $key; ?>" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="oliver kopyov">
             <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
@@ -113,7 +110,7 @@
                                     <i class="fa fa-camera"></i>
                                     Загрузить аватар
                                 </a>
-                                <a href="#" class="dropdown-item" onclick="return confirm('are you sure?');">
+                                <a href="/destroy.php?id=<?php echo $user['id']; ?>" class="dropdown-item" onclick="return confirm('are you sure?');">
                                     <i class="fa fa-window-close"></i>
                                     Удалить
                                 </a>
@@ -121,10 +118,6 @@
                          <?php else: ?>
                             <?php echo $user['name']; ?>
                         <?php endif; ?>
-
-
-
-
                         <span class="text-truncate text-truncate-xl"><?php echo $user['work']; ?></span>
                     </div>
                     <button class="js-expand-btn btn btn-sm btn-default d-none" data-toggle="collapse" data-target="#c_<?php echo $key; ?> > .card-body + .card-body" aria-expanded="false">
