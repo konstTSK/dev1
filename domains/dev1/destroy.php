@@ -13,7 +13,7 @@ function user_is_owner($id,$auth_id) {
     if($id == $auth_id){
         return true;
     }
-
+    return false;
 }
 
 function is_admin($admin){
@@ -26,9 +26,28 @@ function is_admin($admin){
 
 if ( is_admin($admin) || user_is_owner($user_id,$auth_id)  ) {
 
-    echo 1;
+    $pdo = new PDO("mysql:host=localhost;dbname=diplom","root","root");
+    $sql = 'DELETE FROM user WHERE id = :id';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        'id'=>$user_id,
+    ]);
+
+    if (user_is_owner($user_id,$auth_id)) {
+        unset($_SESSION['auth']);
+        unset($_SESSION['admin']);
+        unset($_SESSION['user_id']);
+        $_SESSION['message']='Вы удалили свой профиль';
+        header("Location: /page_login.php");
+    }elseif( is_admin($admin)) {
+        $_SESSION['message']='Вы удалили профиль другого пользователя';
+        header("Location: /users.php");
+    }
+
+
+
 
 }else {
-    echo 2;
+    $_SESSION['message']='вы не можете удалить профиль';
 }
 ?>
