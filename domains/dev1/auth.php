@@ -20,9 +20,9 @@ if (password_verify($_POST['password'], $user['password'])) {
     $_SESSION['user_id'] = $user['id'];
 
     if ($user['admin']== true){
-        $_SESSION['admin']= true;
+        $_SESSION['admin']= $user['admin'];
     }else{
-        $_SESSION['admin']= false;
+        $_SESSION['admin']= $user['admin'];
     }
 
     header("Location: /users.php");
